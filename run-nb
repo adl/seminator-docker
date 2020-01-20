@@ -1,0 +1,4 @@
+#!/bin/sh
+
+cd /home/user
+SPOT_TMPDIR=/tmp jupyter notebook --ip='0.0.0.0' --no-browser "$@"
