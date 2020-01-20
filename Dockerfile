@@ -30,9 +30,8 @@ RUN ln -s /usr/share/fonts/truetype/lato/Lato-Regular.ttf /home/user/.jupyter/cu
 # 2017-01-19: Today's version of Jupyter takes custom.js from ~/.jupyter,
 #             and custom.css from ~/.ipython.
 RUN mkdir -p /home/user/.ipython && ln -s /home/user/.jupyter/custom /home/user/.ipython/custom
-#COPY README /home/user/
-
 RUN cd /tmp && ./install.sh && rm -f install.sh && chown -R user:user ~user
+COPY README.md /home/user/README.md
 
 WORKDIR /home/user
 USER user
