@@ -7,7 +7,7 @@ mkdir ~user/src
 cd ~user/src
 # Seminator
 V=1.99
-wget https://www.lrde.epita.fr/~adl/seminator-$V.tar.gz
+wget https://github.com/mklokocka/seminator/releases/download/v$V/seminator-$V.tar.gz
 tar xvf seminator-$V.tar.gz
 cd seminator-$V
 ./configure
