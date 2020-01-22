@@ -11,7 +11,7 @@ RUN echo 'deb http://debian.mirrors.ovh.net/debian sid main' > /etc/apt/sources.
       python3-pip python3-dev python3-setuptools python3-matplotlib python3-numpy python3-pandas \
       python3-wheel maven \
       build-essential git graphviz fonts-lato \
-      wget sudo unzip imagemagick ghostscript libbdd0c2 libspot-dev libbddx-dev \
+      wget sudo zip unzip imagemagick ghostscript libbdd0c2 libspot-dev libbddx-dev \
       libbdd-dev man-db less \
       openjdk-11-jre-headless openjdk-11-jdk-headless && \
     set -x && \

@@ -63,3 +63,19 @@ cd ~user/src/seminator-evaluation/complement
 mkdir -p other_tools/roll-library
 cd other_tools/roll-library
 ln -s /usr/local/share/roll/ROLL.jar
+
+# GOAL + Fribourg plugin
+V=20200107
+cd /tmp
+wget http://goal.im.ntu.edu.tw/release/GOAL-$V.zip
+wget https://frico.s3.amazonaws.com/goal_plugins/ch.unifr.goal.complement.zip
+unzip ch.unifr.goal.complement.zip
+cd ch.unifr.goal.complement
+zip -9 -r ch.unifr.goal.complement.zip classes plugin.xml
+cd /usr/local/share/
+unzip /tmp/GOAL-$V.zip
+cd GOAL-$V/plugins
+mv /tmp/ch.unifr.goal.complement/ch.unifr.goal.complement.zip .
+
+cd ~user/src/seminator-evaluation/complement/other_tools
+ln -s /usr/local/share/GOAL-$V
