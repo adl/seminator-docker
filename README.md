@@ -2,7 +2,7 @@
 
 # What is this?
 
-This is a docker image that can be used to experiment with [Seminator 2](https://github.com/mklokocka/seminator).  Besides seminator, it contains a copy of [Spot](https://spot.lrde.epita.fr/), [Owl](https://owl.model.in.tum.de/), and [Jupyter](https://jupyter.org/).
+This is a docker image that can be used to experiment with [Seminator 2](https://github.com/mklokocka/seminator).  Besides seminator, it contains a copy of [Spot](https://spot.lrde.epita.fr/), [Owl](https://owl.model.in.tum.de/), [Jupyter](https://jupyter.org/), and [Roll](https://github.com/ISCAS-PMC/roll-library).
 
 We prefer docker images over virtual machines as the former are much more lightweight and versatile: you can execute commands that are inside the docker image without having to boot an entire system, work with multiple docker images at the same time, and rebuild them and extend them very easily.
 

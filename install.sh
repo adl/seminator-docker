@@ -43,4 +43,23 @@ do
     ln -s /usr/local/share/owl-$V/bin/$i /usr/local/bin/
 done
 
+cd /tmp
+git clone https://github.com/ISCAS-PMC/roll-library.git
+cd roll-library
+./build.sh
+mkdir /usr/local/share/roll
+cp ROLL.jar /usr/local/share/roll
+cat >/usr/local/bin/roll <<EOF
+#!/bin/sh
+exec java -jar /usr/local/share/roll/ROLL.jar "$@"
+EOF
+chmod +x /usr/local/bin/roll
+cd /tmp
+rm -rf roll-library
 
+# seminator-evaluation expect a copy of the ROLL library in
+# complement/other_tools/roll-library
+cd ~user/src/seminator-evaluation/complement
+mkdir -p other_tools/roll-library
+cd other_tools/roll-library
+ln -s /usr/local/share/roll/ROLL.jar
