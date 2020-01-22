@@ -21,6 +21,14 @@ cd ../..
 ln -s ~user/src/seminator-$V/notebooks/
 
 
+cd ~user/src
+git clone https://github.com/xblahoud/ltlcross_wrapper.git
+cd ltlcross_wrapper
+pip3 install .
+
+cd ~user/src
+git clone https://github.com/xblahoud/seminator-evaluation.git
+
 cd /tmp
 # Owl
 V=19.06.03
@@ -34,3 +42,5 @@ for i in delag dra2dpa fgx2dpa ltl2dgmra ltl2da ltl2dgra ltl2dpa ltl2dra \
 do
     ln -s /usr/local/share/owl-$V/bin/$i /usr/local/bin/
 done
+
+
