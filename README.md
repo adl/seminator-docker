@@ -2,7 +2,7 @@
 
 # What is this?
 
-This is a docker image that can be used to experiment with [Seminator 2](https://github.com/mklokocka/seminator).  Besides seminator, it contains a copy of [Spot](https://spot.lrde.epita.fr/), [Owl](https://owl.model.in.tum.de/), [Jupyter](https://jupyter.org/), [Roll](https://github.com/ISCAS-PMC/roll-library), and [GOAL](http://goal.im.ntu.edu.tw/) (with [the Fribourg plugin](http://goal.im.ntu.edu.tw/wiki/doku.php?id=goal:extensions#fribourg_construction)).
+This is a docker image that can be used to experiment with [Seminator 2](https://github.com/mklokocka/seminator).  Besides Seminator, it contains a copy of [Spot](https://spot.lrde.epita.fr/), [Owl](https://owl.model.in.tum.de/), [Jupyter](https://jupyter.org/), [Roll](https://github.com/ISCAS-PMC/roll-library), and [GOAL](http://goal.im.ntu.edu.tw/) (with [the Fribourg plugin](http://goal.im.ntu.edu.tw/wiki/doku.php?id=goal:extensions#fribourg_construction)).
 
 We prefer docker images over virtual machines as the former are much more lightweight and versatile: you can execute commands that are inside the docker image without having to boot an entire system, work with multiple docker images at the same time, and rebuild them and extend them very easily.
 
@@ -129,7 +129,7 @@ You may use the docker image in multiple ways.  Below we give some examples.
    your computer, use another number.
 
    Once connected, your navigator should display a file listing
-   containing this readme file, and a subdirectory `notebooks/`
+   containing this README file, and a subdirectory `notebooks/`
    containing the example notebooks of seminator.
 
    In addition to replaying those notebooks, or creating new ones, you
@@ -149,15 +149,15 @@ The example are ordered so that they can depend on files produced by examples ab
 1. [Spot 2.8.5](https://spot.lrde.epita.fr/) was installed in `/usr/bin` from its Debian package.  This package provides a library of ω-automata algorithms (on which Seminator is built), a [set of tools](https://spot.lrde.epita.fr/tools.html) for manipulating automata from the command-line, and Python bindings.  The following commands may be useful:
 
    - `ltl2tgba 'F(a & GFb) R c' >automaton.hoa` converts an LTL formula into an equivalent generalized-Büchi automaton
-   - `ltl2tgba -B 'F(a & GFb) R c' >sba.hoa` convert an LTL formula into an equivalent state-based Büchi automaton
+   - `ltl2tgba -B 'F(a & GFb) R c' >sba.hoa` converts an LTL formula into an equivalent state-based Büchi automaton
    - `autfilt -c --is-semi-deterministic automaton.hoa` counts the number of semi-deterministic automata in file `automaton.hoa` (in this example it would output 0).
-   - `autfilt --tgba --complement automaton.hoa >complement.hoa` complement the automata in file `automaton.hoa` and output (maybe generalized) Büchi automata in `complement.hoa`.   (Depending on the type of the input, the complementation is done using various strategies, but currently this does not uses the NCSB-complementation for semi-deterministic automata, even if there is an implementation of that in Spot.)
+   - `autfilt --tgba --complement automaton.hoa >complement.hoa` complements the automata in file `automaton.hoa` and output (maybe generalized) Büchi automata in `complement.hoa`.   (Depending on the type of the input, the complementation is done using various strategies, but currently this does not uses the NCSB-complementation for semi-deterministic automata, even if there is an implementation of that in Spot.)
    - `autfilt -B automaton.hoa >sba.hoa` convert all the automata in `automaton.hoa` into state-based Büchi automata saved in `sba.hoa`
    - `autfilt --small automaton.hoa >smaller.hoa` simplify all automata `automaton.hoa`, and save the result in `smaller.hoa`
 
 2. [Seminator 2.0](https://github.com/mklokocka/seminator/) was compiled and installed in `/usr/local/bin`.  A copy of its source-code is in `~/src/seminator-2.0/`.
 
-   - `seminator automaton.hoa >semidet.hoa` will semi-determinize the automata in `automaton.hoa` and output th
+   - `seminator automaton.hoa >semidet.hoa` will semi-determinize the automata in `automaton.hoa` and output the result in `semidet.hoa`
    - `seminator --complement=spot automaton.hoa >complement.hoa` will first semi-determinize the automata and then apply Spot's implementation of the NCSB complementation algorithm, outputting the results in `complement.hoa`.
    - `seminator --complement=pldi automaton.hoa >complement.hoa` does the same, but using the PLDI variant of the NCSB complementation (which is implemented in seminator).
 
@@ -171,7 +171,7 @@ The example are ordered so that they can depend on files produced by examples ab
 
    - `roll complement automaton.hoa -out complement.hoa` will read `automaton.hoa` and output its complement in `complement.hoa`; this replaces the [Buechic tool](https://iscasmc.ios.ac.cn/buechic/doku.php).
 
-5. [GOAL-20200107](http://goal.im.ntu.edu.tw/) This is a pre-release of the next release of GOAL (Graphical Tool for Omega-Automata and Logics).  The docker image contains a "headerless" version of the Java runtime, enough to run GOAL from the command-line, but not to start its graphical interface.  Additionally, the [the Fribourg plugin](http://goal.im.ntu.edu.tw/wiki/doku.php?id=goal:extensions#fribourg_construction)) provide a new complementation implmentation.
+5. [GOAL-20200107](http://goal.im.ntu.edu.tw/) This is a pre-release of the next release of GOAL (Graphical Tool for Omega-Automata and Logics).  The docker image contains a "headerless" version of the Java runtime, enough to run GOAL from the command-line, but not to start its graphical interface.  Additionally, [the Fribourg plugin](http://goal.im.ntu.edu.tw/wiki/doku.php?id=goal:extensions#fribourg_construction)) provides a new complementation implementation.
 
    - `gc batch '$temp = complement -m fribourg sba.hoa; save -c HOAF $temp complement.hoa;'` will complement a the state-based Büchi automaton stored in `sba.hoa` using the Fribourg construction, and save the result in `complement.hoa`.
-   - `gc batch '$temp = complement -m piterman -eq -sp sba.hoa; save -c HOAF $temp complement.hoa;'` does the same thing the piterman construction
+   - `gc batch '$temp = complement -m piterman -eq -sp sba.hoa; save -c HOAF $temp complement.hoa;'` does the same using the Piterman construction
