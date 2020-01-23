@@ -137,3 +137,41 @@ You may use the docker image in multiple ways.  Below we give some examples.
 
    You may also try to connect to `http://localhost:7777/lab` instead
    for an alternative environment.
+
+# Installed tools
+
+Below we give an example of how to run each of the installed tool to perform a task related to seminator (i.e., semi-determinizing an automaton, or complementing it).  We assume you are running these command using an interactive shell running in the container image (as started in point 1 of previous section, or using a terminal in the Jupyter environment, as in point 5 of the previous section).
+
+Some of the tools assume that a file can only contain one automaton, while other are able to work over all automata present in a file.  To work with the lowest common denominator, that example will process one automaton at a time, but the description of each command will use the plural in case it would work with multiple automata.
+
+The example are ordered so that they can depend on files produced by examples above them.
+
+1. [Spot 2.8.5](https://spot.lrde.epita.fr/) was installed in `/usr/bin` from its Debian package.  This package provides a library of ω-automata algorithms (on which Seminator is built), a [set of tools](https://spot.lrde.epita.fr/tools.html) for manipulating automata from the command-line, and Python bindings.  The following commands may be useful:
+
+   - `ltl2tgba 'F(a & GFb) R c' >automaton.hoa` converts an LTL formula into an equivalent generalized-Büchi automaton
+   - `ltl2tgba -B 'F(a & GFb) R c' >sba.hoa` convert an LTL formula into an equivalent state-based Büchi automaton
+   - `autfilt -c --is-semi-deterministic automaton.hoa` counts the number of semi-deterministic automata in file `automaton.hoa` (in this example it would output 0).
+   - `autfilt --tgba --complement automaton.hoa >complement.hoa` complement the automata in file `automaton.hoa` and output (maybe generalized) Büchi automata in `complement.hoa`.   (Depending on the type of the input, the complementation is done using various strategies, but currently this does not uses the NCSB-complementation for semi-deterministic automata, even if there is an implementation of that in Spot.)
+   - `autfilt -B automaton.hoa >sba.hoa` convert all the automata in `automaton.hoa` into state-based Büchi automata saved in `sba.hoa`
+   - `autfilt --small automaton.hoa >smaller.hoa` simplify all automata `automaton.hoa`, and save the result in `smaller.hoa`
+
+2. [Seminator 2.0](https://github.com/mklokocka/seminator/) was compiled and installed in `/usr/local/bin`.  A copy of its source-code is in `~/src/seminator-2.0/`.
+
+   - `seminator automaton.hoa >semidet.hoa` will semi-determinize the automata in `automaton.hoa` and output th
+   - `seminator --complement=spot automaton.hoa >complement.hoa` will first semi-determinize the automata and then apply Spot's implementation of the NCSB complementation algorithm, outputting the results in `complement.hoa`.
+   - `seminator --complement=pldi automaton.hoa >complement.hoa` does the same, but using the PLDI variant of the NCSB complementation (which is implemented in seminator).
+
+3. [Owl 19.06.03](https://owl.model.in.tum.de/) was installed in `/usr/local/{share,bin}/`.  This is a Java library for ω-automata manipulation, and like spot, it installs many command-line tools.   The following commands are related to seminator:
+
+   - `ltl2ldgba 'F(a & GFb) R c' >semidet.hoa` builds a semi-deterministic generalized-Büchi automaton from an LTL formula
+   - `ltl2ldgba -s 'F(a & GFb) R c' >semidet.hoa` is a "symmetric" variant of this construction
+   - `nba2ldba -I automaton.hoa >semidet.hoa` builds a semi-deterministic automaton from `automaton.hoa`
+
+4. [ROLL 1.0](https://github.com/ISCAS-PMC/roll-library) (Regular $\omega$-automata Learning Library) was installed in `/usr/local/{share,bin}/`.  This is Java library with a command-line interface.  For simplicity, we have installed a script called `roll`.
+
+   - `roll complement automaton.hoa -out complement.hoa` will read `automaton.hoa` and output its complement in `complement.hoa`; this replaces the [Buechic tool](https://iscasmc.ios.ac.cn/buechic/doku.php).
+
+5. [GOAL-20200107](http://goal.im.ntu.edu.tw/) This is a pre-release of the next release of GOAL (Graphical Tool for Omega-Automata and Logics).  The docker image contains a "headerless" version of the Java runtime, enough to run GOAL from the command-line, but not to start its graphical interface.  Additionally, the [the Fribourg plugin](http://goal.im.ntu.edu.tw/wiki/doku.php?id=goal:extensions#fribourg_construction)) provide a new complementation implmentation.
+
+   - `gc batch '$temp = complement -m fribourg sba.hoa; save -c HOAF $temp complement.hoa;'` will complement a the state-based Büchi automaton stored in `sba.hoa` using the Fribourg construction, and save the result in `complement.hoa`.
+   - `gc batch '$temp = complement -m piterman -eq -sp sba.hoa; save -c HOAF $temp complement.hoa;'` does the same thing the piterman construction

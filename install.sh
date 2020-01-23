@@ -49,7 +49,7 @@ cd roll-library
 ./build.sh
 mkdir /usr/local/share/roll
 cp ROLL.jar /usr/local/share/roll
-cat >/usr/local/bin/roll <<EOF
+cat >/usr/local/bin/roll <<\EOF
 #!/bin/sh
 exec java -jar /usr/local/share/roll/ROLL.jar "$@"
 EOF
@@ -76,3 +76,10 @@ cd ~user/src/seminator-evaluation/complement/other_tools
 unzip /tmp/GOAL-$V.zip
 cd GOAL-$V/plugins
 mv /tmp/ch.unifr.goal.complement/ch.unifr.goal.complement.zip .
+cd /usr/local/bin
+
+cat >/usr/local/bin/gc <<\EOF
+#!/bin/sh
+exec ~user/src/seminator-evaluation/complement/other_tools/GOAL-$V/gc "$@"
+EOF
+chmod +x /usr/local/bin/gc
