@@ -5,7 +5,7 @@ set -x  # Show each instruction as it is run
 
 mkdir ~user/src
 cd ~user/src
-# Seminator
+# Seminator 2
 V=1.99
 wget https://github.com/mklokocka/seminator/releases/download/v$V/seminator-$V.tar.gz
 tar xvf seminator-$V.tar.gz
@@ -20,6 +20,19 @@ cp COPYING README.md /usr/local/share/doc/seminator
 cd ../..
 ln -s ~user/src/seminator-$V/notebooks/
 
+
+# Seminator 1.1 and 1.2
+for V in 1.1 1.2; do
+  cd /tmp
+  wget https://github.com/mklokocka/seminator/archive/v$V.0.zip
+  unzip v$V.0.zip
+  cd seminator-$V.0
+  perl -pi -e 's/c\+\+11/c++14/g' makefile
+  make -j4
+  mv seminator /usr/local/bin/seminator-$V
+  cd ..
+  rm -rf seminator-$V.0 v$V.0.zip
+done
 
 cd ~user/src
 git clone https://github.com/xblahoud/ltlcross_wrapper.git -b next

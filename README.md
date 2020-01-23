@@ -1,6 +1,6 @@
 # What is this?
 
-This is a docker image that can be used to experiment with [Seminator 2](https://github.com/mklokocka/seminator).  Besides Seminator, it contains a copy of [Spot](https://spot.lrde.epita.fr/), [Owl](https://owl.model.in.tum.de/), [Jupyter](https://jupyter.org/), [Roll](https://github.com/ISCAS-PMC/roll-library), and [GOAL](http://goal.im.ntu.edu.tw/) (with [the Fribourg plugin](http://goal.im.ntu.edu.tw/wiki/doku.php?id=goal:extensions#fribourg_construction)).
+This is a docker image that can be used to experiment with [Seminator 2](https://github.com/mklokocka/seminator).  Besides Seminator 2, it contains a copy of [Spot](https://spot.lrde.epita.fr/), [Owl](https://owl.model.in.tum.de/), [Jupyter](https://jupyter.org/), [Roll](https://github.com/ISCAS-PMC/roll-library), [GOAL](http://goal.im.ntu.edu.tw/) (with [the Fribourg plugin](http://goal.im.ntu.edu.tw/wiki/doku.php?id=goal:extensions#fribourg_construction)), and the previous two versions of Seminator: 1.1 (our LPAR'17 paper) and 1.2 (only mentioned during the LPAR'17 presentation), for comparison.
 
 We prefer docker images over virtual machines as the former are much more lightweight and versatile: you can execute commands that are inside the docker image without having to boot an entire system, work with multiple docker images at the same time, and rebuild them and extend them very easily.
 
@@ -159,17 +159,23 @@ The example are ordered so that they can depend on files produced by examples ab
    - `seminator --complement=spot automaton.hoa >complement.hoa` will first semi-determinize the automata and then apply Spot's implementation of the NCSB complementation algorithm, outputting the results in `complement.hoa`.
    - `seminator --complement=pldi automaton.hoa >complement.hoa` does the same, but using the PLDI variant of the NCSB complementation (which is implemented in seminator).
 
-3. [Owl 19.06.03](https://owl.model.in.tum.de/) was installed in `/usr/local/{share,bin}/`.  This is a Java library for ω-automata manipulation, and like spot, it installs many command-line tools.   The following commands are related to seminator:
+3. [Seminator 1.1 and 1.2](https://github.com/mklokocka/seminator/) are installed in `/usr/local/bin/` as `seminator-1.1` and `seminator-1.2`.  For instance:
+
+   - `seminator-1.2 automaton.hoa >semidet.hoa` will semi-determinize the automaton in `automaton.hoa`
+
+   These versions do not support complementation, and will only process one automaton at a time.
+
+4. [Owl 19.06.03](https://owl.model.in.tum.de/) was installed in `/usr/local/{share,bin}/`.  This is a Java library for ω-automata manipulation, and like spot, it installs many command-line tools.   The following commands are related to seminator:
 
    - `ltl2ldgba 'F(a & GFb) R c' >semidet.hoa` builds a semi-deterministic generalized-Büchi automaton from an LTL formula
    - `ltl2ldgba -s 'F(a & GFb) R c' >semidet.hoa` is a "symmetric" variant of this construction
    - `nba2ldba -I automaton.hoa >semidet.hoa` builds a semi-deterministic automaton from `automaton.hoa`
 
-4. [ROLL 1.0](https://github.com/ISCAS-PMC/roll-library) (Regular $\omega$-automata Learning Library) was installed in `/usr/local/{share,bin}/`.  This is Java library with a command-line interface.  For simplicity, we have installed a script called `roll`.
+5. [ROLL 1.0](https://github.com/ISCAS-PMC/roll-library) (Regular $\omega$-automata Learning Library) was installed in `/usr/local/{share,bin}/`.  This is Java library with a command-line interface.  For simplicity, we have installed a script called `roll`.
 
    - `roll complement automaton.hoa -out complement.hoa` will read `automaton.hoa` and output its complement in `complement.hoa`; this replaces the [Buechic tool](https://iscasmc.ios.ac.cn/buechic/doku.php).
 
-5. [GOAL-20200107](http://goal.im.ntu.edu.tw/) This is a pre-release of the next release of GOAL (Graphical Tool for Omega-Automata and Logics).  The docker image contains a "headerless" version of the Java runtime, enough to run GOAL from the command-line, but not to start its graphical interface.  Additionally, [the Fribourg plugin](http://goal.im.ntu.edu.tw/wiki/doku.php?id=goal:extensions#fribourg_construction)) provides a new complementation implementation.
+6. [GOAL-20200107](http://goal.im.ntu.edu.tw/) This is a pre-release of the next release of GOAL (Graphical Tool for Omega-Automata and Logics).  The docker image contains a "headerless" version of the Java runtime, enough to run GOAL from the command-line, but not to start its graphical interface.  Additionally, [the Fribourg plugin](http://goal.im.ntu.edu.tw/wiki/doku.php?id=goal:extensions#fribourg_construction)) provides a new complementation implementation.
 
    - `gc batch '$temp = complement -m fribourg sba.hoa; save -c HOAF $temp complement.hoa;'` will complement the state-based Büchi automaton stored in `sba.hoa` using the Fribourg construction, and will save the result in `complement.hoa`.
    - `gc batch '$temp = complement -m piterman -eq -sp sba.hoa; save -c HOAF $temp complement.hoa;'` does the same using the Piterman construction
