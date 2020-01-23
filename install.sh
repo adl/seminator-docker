@@ -72,10 +72,7 @@ wget https://frico.s3.amazonaws.com/goal_plugins/ch.unifr.goal.complement.zip
 unzip ch.unifr.goal.complement.zip
 cd ch.unifr.goal.complement
 zip -9 -r ch.unifr.goal.complement.zip classes plugin.xml
-cd /usr/local/share/
+cd ~user/src/seminator-evaluation/complement/other_tools
 unzip /tmp/GOAL-$V.zip
 cd GOAL-$V/plugins
 mv /tmp/ch.unifr.goal.complement/ch.unifr.goal.complement.zip .
-
-cd ~user/src/seminator-evaluation/complement/other_tools
-ln -s /usr/local/share/GOAL-$V
