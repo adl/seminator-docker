@@ -182,3 +182,7 @@ The example are ordered so that they can depend on files produced by examples ab
 
 
 The `sandbox.ipynb` notebook at the root of the directory contains definition for Python function that can help run all these tools interactively.
+
+# Experimental evaluation
+
+A copy of the script used for performing the experimental evaluation of Seminator 2 are in the `~/src/seminator-evalution/` directory.  Please check this directory for a README file with instructions.  The notebooks performing this evaluation rely on a Python package called `ltlcross_wrapper`, which is already installed.
