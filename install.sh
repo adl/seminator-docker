@@ -78,8 +78,8 @@ cd GOAL-$V/plugins
 mv /tmp/ch.unifr.goal.complement/ch.unifr.goal.complement.zip .
 cd /usr/local/bin
 
-cat >/usr/local/bin/gc <<\EOF
+cat >/usr/local/bin/gc <<EOF
 #!/bin/sh
-exec ~user/src/seminator-evaluation/complement/other_tools/GOAL-$V/gc "$@"
+exec ~user/src/seminator-evaluation/complement/other_tools/GOAL-$V/gc "\$@"
 EOF
 chmod +x /usr/local/bin/gc

@@ -1,5 +1,3 @@
-
-
 # What is this?
 
 This is a docker image that can be used to experiment with [Seminator 2](https://github.com/mklokocka/seminator).  Besides Seminator, it contains a copy of [Spot](https://spot.lrde.epita.fr/), [Owl](https://owl.model.in.tum.de/), [Jupyter](https://jupyter.org/), [Roll](https://github.com/ISCAS-PMC/roll-library), and [GOAL](http://goal.im.ntu.edu.tw/) (with [the Fribourg plugin](http://goal.im.ntu.edu.tw/wiki/doku.php?id=goal:extensions#fribourg_construction)).
@@ -120,7 +118,7 @@ You may use the docker image in multiple ways.  Below we give some examples.
 5. Starting the Jupyter environment to work with interactive notebooks
 
    ```console
-   $ sudo docker run -p 7777:8888 -t gadl/seminator run-nb
+   $ sudo docker run --rm=true -it -p 7777:8888 gadl/seminator run-nb
    ```
 
    Then point your navigator to `http://localhost:7777`.  Note
@@ -173,5 +171,5 @@ The example are ordered so that they can depend on files produced by examples ab
 
 5. [GOAL-20200107](http://goal.im.ntu.edu.tw/) This is a pre-release of the next release of GOAL (Graphical Tool for Omega-Automata and Logics).  The docker image contains a "headerless" version of the Java runtime, enough to run GOAL from the command-line, but not to start its graphical interface.  Additionally, [the Fribourg plugin](http://goal.im.ntu.edu.tw/wiki/doku.php?id=goal:extensions#fribourg_construction)) provides a new complementation implementation.
 
-   - `gc batch '$temp = complement -m fribourg sba.hoa; save -c HOAF $temp complement.hoa;'` will complement a the state-based Büchi automaton stored in `sba.hoa` using the Fribourg construction, and save the result in `complement.hoa`.
+   - `gc batch '$temp = complement -m fribourg sba.hoa; save -c HOAF $temp complement.hoa;'` will complement the state-based Büchi automaton stored in `sba.hoa` using the Fribourg construction, and will save the result in `complement.hoa`.
    - `gc batch '$temp = complement -m piterman -eq -sp sba.hoa; save -c HOAF $temp complement.hoa;'` does the same using the Piterman construction
