@@ -22,7 +22,7 @@ ln -s ~user/src/seminator-$V/notebooks/
 
 
 cd ~user/src
-git clone https://github.com/xblahoud/ltlcross_wrapper.git
+git clone https://github.com/xblahoud/ltlcross_wrapper.git -b next
 cd ltlcross_wrapper
 pip3 install .
 
