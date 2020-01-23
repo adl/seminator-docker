@@ -2,7 +2,7 @@
 
 # What is this?
 
-This is a docker image that can be used to experiment with [Seminator 2](https://github.com/mklokocka/seminator).  Besides seminator, it contains a copy of [Spot](https://spot.lrde.epita.fr/), [Owl](https://owl.model.in.tum.de/), [Jupyter](https://jupyter.org/), and [Roll](https://github.com/ISCAS-PMC/roll-library).
+This is a docker image that can be used to experiment with [Seminator 2](https://github.com/mklokocka/seminator).  Besides seminator, it contains a copy of [Spot](https://spot.lrde.epita.fr/), [Owl](https://owl.model.in.tum.de/), [Jupyter](https://jupyter.org/), [Roll](https://github.com/ISCAS-PMC/roll-library), and [GOAL](http://goal.im.ntu.edu.tw/) (with [the Fribourg plugin](http://goal.im.ntu.edu.tw/wiki/doku.php?id=goal:extensions#fribourg_construction)).
 
 We prefer docker images over virtual machines as the former are much more lightweight and versatile: you can execute commands that are inside the docker image without having to boot an entire system, work with multiple docker images at the same time, and rebuild them and extend them very easily.
 
@@ -29,7 +29,7 @@ $ sudo docker build -t gadl/seminator .
 
 You may use the docker image in multiple ways.  Below we give some examples.
 
-1. Running a non-interactive shell inside the docker image, in order to play with any of the installed tools:
+1. Running an interactive shell inside the docker image, in order to play with any of the installed tools:
 
    ```console
    $ sudo docker run --rm=true -it gadl/seminator bash
