@@ -33,6 +33,7 @@ RUN ln -s /usr/share/fonts/truetype/lato/Lato-Regular.ttf /home/user/.jupyter/cu
 RUN mkdir -p /home/user/.ipython && ln -s /home/user/.jupyter/custom /home/user/.ipython/custom
 RUN cd /tmp && ./install.sh && rm -f install.sh && chown -R user:user ~user
 COPY README.md /home/user/README.md
+COPY sandbox.ipynb /home/user/sandbox.ipynb
 
 WORKDIR /home/user
 USER user

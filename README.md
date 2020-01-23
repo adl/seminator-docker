@@ -173,3 +173,6 @@ The example are ordered so that they can depend on files produced by examples ab
 
    - `gc batch '$temp = complement -m fribourg sba.hoa; save -c HOAF $temp complement.hoa;'` will complement the state-based Büchi automaton stored in `sba.hoa` using the Fribourg construction, and will save the result in `complement.hoa`.
    - `gc batch '$temp = complement -m piterman -eq -sp sba.hoa; save -c HOAF $temp complement.hoa;'` does the same using the Piterman construction
+
+
+The `sandbox.ipynb` notebook at the root of the directory contains definition for Python function that can help run all these tools interactively.
