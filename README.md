@@ -1,8 +1,8 @@
 # What is this?
 
-This is a docker image that can be used to experiment with [Seminator 2](https://github.com/mklokocka/seminator).  Besides Seminator 2, it contains a copy of [Spot](https://spot.lrde.epita.fr/), [Owl](https://owl.model.in.tum.de/), [Jupyter](https://jupyter.org/), [Roll](https://github.com/ISCAS-PMC/roll-library), [GOAL](http://goal.im.ntu.edu.tw/) (with [the Fribourg plugin](http://goal.im.ntu.edu.tw/wiki/doku.php?id=goal:extensions#fribourg_construction)), and the previous two versions of Seminator: 1.1 (our LPAR'17 paper) and 1.2 (only mentioned during the LPAR'17 presentation), for comparison.
+This is a docker image that can be used to experiment with [Seminator 2](https://github.com/mklokocka/seminator).  Besides Seminator 2, it contains a copy of [Spot](https://spot.lrde.epita.fr/), [Owl](https://owl.model.in.tum.de/), [Jupyter](https://jupyter.org/), [Roll](https://github.com/ISCAS-PMC/roll-library), [GOAL](http://goal.im.ntu.edu.tw/) (with [the Fribourg plugin](http://goal.im.ntu.edu.tw/wiki/doku.php?id=goal:extensions#fribourg_construction)), and the previous two versions of Seminator: 1.1 (our LPAR'17 paper) and 1.2 (only mentioned during the LPAR'17 presentation), for comparison.  Finally, it contains a copy of [seminator-evaluation](https://github.com/xblahoud/seminator-evaluation), i.e., Jupyter notebooks that compare the results of Seminator 2 with the other installed tools.
 
-We prefer docker images over virtual machines as the former are much more lightweight and versatile: you can execute commands that are inside the docker image without having to boot an entire system, work with multiple docker images at the same time, and rebuild them and extend them very easily.
+We prefer docker images over virtual machines as the former are much more lightweight and versatile: you can execute commands that are inside the docker image without having to boot an entire system, work with multiple docker images at the same time, and rebuild them and extend them very easily.  In the following, we assume that Docker is already [installed](https://docs.docker.com/install/) on your computer.
 
 
 # Downloading the docker image
@@ -25,7 +25,7 @@ $ sudo docker build -t gadl/seminator .
 
 # Running the docker image
 
-You may use the docker image in multiple ways.  Below we give some examples.
+You may use the docker image in multiple ways.  Below we give some examples.  If you are in a hurry, jump directly to example 5, as this is the preferred one.
 
 1. Running an interactive shell inside the docker image, in order to play with any of the installed tools:
 
@@ -67,7 +67,7 @@ You may use the docker image in multiple ways.  Below we give some examples.
    [...]
    ```
 
-3. Piping some input to a command that is in the docker image
+3. Piping some input from outside the container to a command that is inside the docker image
 
    For instance, assuming you have Spot's `ltl2tgba` installed on your machine (or any other producing automata in the HOA format), you may redirect its output to the containerized version of `seminator` as follows:
 
@@ -121,20 +121,23 @@ You may use the docker image in multiple ways.  Below we give some examples.
    $ sudo docker run --rm=true -it -p 7777:8888 gadl/seminator run-nb
    ```
 
-   Then point your navigator to `http://localhost:7777`.  Note
+   Then point your navigator to `http://localhost:7777/lab`.  Note
    that the `-p 7777:8888` redirects the port 8888 of the container to
    the port 7777 of your computer.  If the latter is already used, on
    your computer, use another number.
 
    Once connected, your navigator should display a file listing
-   containing this README file, and a subdirectory `notebooks/`
-   containing the example notebooks of seminator.
+   containing this README file, a `sandbox.ipynb` notebook showing how
+   to run all the tools installed in this notebook (see below), a
+   subdirectory `notebooks/` linking to the example notebooks of
+   seminator, and an `src/` directory containing the sources of
+   Seminator 2.0 and its experimental evaluation.
 
    In addition to replaying those notebooks, or creating new ones, you
    can also start an interactive shell from within your navigator.
 
-   You may also try to connect to `http://localhost:7777/lab` instead
-   for an alternative environment.
+   Some users may prefer to use `http://localhost:7777/` (without the
+   `/lab` part of the URL) to access the old Jupyter environment.
 
 # Installed tools
 
@@ -181,8 +184,18 @@ The example are ordered so that they can depend on files produced by examples ab
    - `gc batch '$temp = complement -m piterman -eq -sp sba.hoa; save -c HOAF $temp complement.hoa;'` does the same using the Piterman construction
 
 
-The `sandbox.ipynb` notebook at the root of the directory contains definition for Python function that can help run all these tools interactively.
+The `sandbox.ipynb` Jupyter notebook at the root of the directory contains definitions for Python functions that can help run all these tools interactively.
 
 # Experimental evaluation
 
-A copy of the script used for performing the experimental evaluation of Seminator 2 are in the `~/src/seminator-evalution/` directory.  Please check this directory for a README file with instructions.  The notebooks performing this evaluation rely on a Python package called `ltlcross_wrapper`, which is already installed.
+A copy of the script used for performing the experimental evaluation of Seminator 2 are in the `~/src/seminator-evalution/` directory.  The easiest way to work with this is via Jupter Lab.  Start it with:
+
+   ```console
+   $ sudo docker run --rm=true -it -p 7777:8888 gadl/seminator run-nb
+   ```
+
+The connect you web browser to `http://localhost:7777/lab/tree/src/seminator-evaluation/`.
+In the left panel, right-click on the `README.md` file and select *open with > Markdown preview*.
+After reading those instructions, open the notebooks you would like to read or replay.
+
+Should you want to dig into what is going on during the evaluation, the `src/` directory contains a copy of the source code for `ltlcross_wrapper`, which is used to simplify (and speed-up) the evaluation.
