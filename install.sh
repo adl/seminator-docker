@@ -67,6 +67,9 @@ cat >/usr/local/bin/roll <<\EOF
 exec java -jar /usr/local/share/roll/ROLL.jar "$@"
 EOF
 chmod +x /usr/local/bin/roll
+cd /tmp/roll-library
+mkdir -p /usr/local/doc/roll
+cp LICENSE license-* README.md /usr/local/doc/roll
 cd /tmp
 rm -rf roll-library
 
