@@ -7,7 +7,7 @@ We prefer docker images over virtual machines as the former are much more lightw
 
 # Downloading the docker image
 
-The image is automatically [built and stored by DockerHub](https://hub.docker.com/repository/docker/gadl/seminator), using the [Dockerfile stored on GitHub](https://github.com/adl/seminator-docker).  The easiest way to download it is to run:
+The image is automatically [built and stored by DockerHub](https://hub.docker.com/r/gadl/seminator), using the [Dockerfile stored on GitHub](https://github.com/adl/seminator-docker).  The easiest way to download it is to run:
 
 ```console
 $ sudo docker pull gadl/seminator
