@@ -35,7 +35,7 @@ for V in 1.1 1.2; do
 done
 
 cd ~user/src
-git clone https://github.com/xblahoud/ltlcross_wrapper.git -b next
+git clone https://github.com/xblahoud/ltlcross_wrapper.git -b v0.7
 cd ltlcross_wrapper
 pip3 install .
 
