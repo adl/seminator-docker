@@ -34,6 +34,8 @@ for V in 1.1 1.2; do
   rm -rf seminator-$V.0 v$V.0.zip
 done
 
+pip3 install seaborn
+
 cd ~user/src
 git clone https://github.com/xblahoud/ltlcross_wrapper.git -b v0.7
 cd ltlcross_wrapper
