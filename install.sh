@@ -6,7 +6,7 @@ set -x  # Show each instruction as it is run
 mkdir ~user/src
 cd ~user/src
 # Seminator 2
-V=1.99
+V=2.0
 wget https://github.com/mklokocka/seminator/releases/download/v$V/seminator-$V.tar.gz
 tar xvf seminator-$V.tar.gz
 cd seminator-$V
