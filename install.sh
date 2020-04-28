@@ -85,7 +85,10 @@ ln -s /usr/local/share/roll/ROLL.jar
 # GOAL + Fribourg plugin
 V=20200107
 cd /tmp
-wget http://goal.im.ntu.edu.tw/release/GOAL-$V.zip
+# The Goal website seems to be broken at the moment (2020-04-28), so
+# I've copied the GOAL zip file at a place that I control. -- adl
+# wget http://goal.im.ntu.edu.tw/release/GOAL-$V.zip
+wget https://www.lrde.epita.fr/dload/spot/deps/GOAL-$V.zip
 wget https://frico.s3.amazonaws.com/goal_plugins/ch.unifr.goal.complement.zip
 unzip ch.unifr.goal.complement.zip
 cd ch.unifr.goal.complement
