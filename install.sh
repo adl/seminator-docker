@@ -37,7 +37,7 @@ done
 pip3 install seaborn
 
 cd ~user/src
-git clone https://github.com/xblahoud/ltlcross_wrapper.git -b v0.7
+git clone https://github.com/xblahoud/ltlcross_wrapper.git -b v0.7.1
 cd ltlcross_wrapper
 pip3 install .
 
