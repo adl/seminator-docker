@@ -2,7 +2,7 @@ FROM debian:buster
 MAINTAINER Alexandre Duret-Lutz <adl@lrde.epita.fr>
 # We have a lot of timeout issues when fetching packages from
 # http://httpredir.debian.org/debian so hardcode the OVH mirror.
-RUN echo 'deb http://debian.mirrors.ovh.net/debian sid main' > /etc/apt/sources.list && \
+RUN echo 'deb http://debian.mirrors.ovh.net/debian stable main' > /etc/apt/sources.list && \
     echo 'deb [trusted=true] http://www.lrde.epita.fr/repo/debian/ stable/' >> /etc/apt/sources.list && \
     apt-get update && \
     RUNLEVEL=1 DEBIAN_FRONTEND=noninteractive \
