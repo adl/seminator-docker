@@ -1,8 +1,9 @@
 # What is this?
 
-This is a docker image that can be used to experiment with [Seminator 2](https://github.com/mklokocka/seminator).  Besides Seminator 2, it contains a copy of [Spot](https://spot.lrde.epita.fr/), [Owl](https://owl.model.in.tum.de/), [Jupyter](https://jupyter.org/), [Roll](https://github.com/ISCAS-PMC/roll-library), [GOAL](http://goal.im.ntu.edu.tw/) (with [the Fribourg plugin](http://goal.im.ntu.edu.tw/wiki/doku.php?id=goal:extensions#fribourg_construction)), and the previous two versions of Seminator: 1.1 (our LPAR'17 paper) and 1.2 (only mentioned during the LPAR'17 presentation), for comparison.  Finally, it contains a copy of [seminator-evaluation](https://github.com/xblahoud/seminator-evaluation), i.e., Jupyter notebooks that compare the results of Seminator 2 with the other installed tools.
+This is a docker image that can be used to experiment with [Seminator 2](https://github.com/mklokocka/seminator).  Besides Seminator 2, it contains a copy of [Spot](https://spot.lrde.epita.fr/), [Owl](https://owl.model.in.tum.de/), [Jupyter](https://jupyter.org/), [Roll](https://github.com/ISCAS-PMC/roll-library), [GOAL](http://goal.im.ntu.edu.tw/) (with [the Fribourg plugin](http://goal.im.ntu.edu.tw/wiki/doku.php?id=goal:extensions#fribourg_construction)), and the previous two versions of Seminator: 1.1 (our LPAR'17 paper) and 1.2 (only mentioned during the LPAR'17 presentation), for comparison.
+Finally, it contains a copy of [seminator-evaluation](https://github.com/xblahoud/seminator-evaluation), i.e., Jupyter notebooks that compare the results of Seminator 2 with the other installed tools.  This seminator evaluation contains the source of the experimental evaluation presented in our CAV'20 paper titled *Seminator2 Can Complement Generalized Büchi Automata via Improved Semi-Determinization* (by František Blahoudek, Alexandre Duret-Lutz, and Jan Strejček).
 
-We prefer docker images over virtual machines as the former are much more lightweight and versatile: you can execute commands that are inside the docker image without having to boot an entire system, work with multiple docker images at the same time, and rebuild them and extend them very easily.  In the following, we assume that Docker is already [installed](https://docs.docker.com/install/) on your computer.
+For the artifact submission to CAV'20, we opted for docker images over virtual machines as the former are much more lightweight and versatile: you can execute commands that are inside the docker image without having to boot an entire system, work with multiple docker images at the same time, and rebuild them and extend them very easily.  In the following, we assume that Docker is already [installed](https://docs.docker.com/install/) on your computer.
 
 
 # Downloading the docker image
@@ -58,7 +59,7 @@ You may use the docker image in multiple ways.  Below we give some examples.  If
    user@b5d1c544c0df:~$ exit
    ```
 
-   NOTE: Using the `--rm=true` option causes Docker to cleanup the container instance on exit, meaning that any files you create in the container will be lost.  If you do not use this option (the default is `--rm=false`) you can restart a previously exited container with `sudo docker start -a b5d1c544c0df`.  The container's name (in this example `b5d1c544c0df`) is displayed in the prompt of the shell, but can also be found with `sudo docker ps -a`.
+   NOTE: Using the `--rm=true` option causes Docker to remove the container instance on exit, meaning that any files you create in the container will be lost.  If you do not use this option (the default is `--rm=false`) you can restart a previously exited container with `sudo docker start -a b5d1c544c0df`.  The container's name (in this example `b5d1c544c0df`) is displayed in the prompt of the shell, but can also be found with `sudo docker ps -a`.
 
 2. Running a non-interactive command in the docker image
 
@@ -188,7 +189,7 @@ The `sandbox.ipynb` Jupyter notebook at the root of the directory contains defin
 
 # Experimental evaluation
 
-A copy of the script used for performing the experimental evaluation of Seminator 2 are in the `~/src/seminator-evalution/` directory.  The easiest way to work with this is via Jupter Lab.  Start it with:
+A copy of the scripts used for performing the experimental evaluation of Seminator 2 are in the `~/src/seminator-evalution/` directory.  The easiest way to work with this is via Jupter Lab.  Start it with:
 
    ```console
    $ sudo docker run --rm=true -it -p 7777:8888 gadl/seminator run-nb
@@ -198,4 +199,4 @@ The connect you web browser to `http://localhost:7777/lab/tree/src/seminator-eva
 In the left panel, right-click on the `README.md` file and select *open with > Markdown preview*.
 After reading those instructions, open the notebooks you would like to read or replay.
 
-Should you want to dig into what is going on during the evaluation, the `src/` directory contains a copy of the source code for `ltlcross_wrapper`, which is used to simplify (and speed-up) the evaluation.
+Should you want to dig into what is going on during the evaluation, the `src/` directory contains a copy of the source code for `ltlcross_wrapper`, which is used to simplify (and speed up) the evaluation.
