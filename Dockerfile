@@ -8,7 +8,7 @@ RUN echo 'deb http://debian.mirrors.ovh.net/debian stable main' > /etc/apt/sourc
     RUNLEVEL=1 DEBIAN_FRONTEND=noninteractive \
       apt-get install -y --no-install-recommends \
       spot python3-spot \
-      python3-pip python3-dev python3-setuptools python3-matplotlib python3-numpy python3-pandas \
+      python3-pip python3-dev python3-setuptools python3-matplotlib \
       python3-wheel maven \
       build-essential git graphviz fonts-lato \
       wget sudo zip unzip imagemagick ghostscript libbdd0c2 libspot-dev libbddx-dev \
@@ -17,6 +17,7 @@ RUN echo 'deb http://debian.mirrors.ovh.net/debian stable main' > /etc/apt/sourc
     set -x && \
     pip3 install jupyter && \
     pip3 install jupyterlab && \
+    pip3 install pandas && \
     rm -rf ~/.cache
 
 RUN mkdir -p /home/user && \
