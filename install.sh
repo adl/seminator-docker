@@ -83,7 +83,7 @@ cd other_tools/roll-library
 ln -s /usr/local/share/roll/ROLL.jar
 
 # GOAL + Fribourg plugin
-V=20200107
+V=20200506
 cd /tmp
 # The Goal website seems to be broken at the moment (2020-04-28), so
 # I've copied the GOAL zip file at a place that I control. -- adl
