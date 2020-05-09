@@ -37,9 +37,14 @@ done
 pip3 install seaborn
 
 cd ~user/src
-git clone https://github.com/xblahoud/ltlcross_wrapper.git -b v0.7.2
-cd ltlcross_wrapper
-pip3 install .
+# ltlcross_wrapper
+#
+# We install from PyPI to get all dependencies, and also clone
+# from git so that people who want to follow the experiments can
+# look at the source code.
+V=0.7.2
+pip3 install ltlcross_wrapper==$V
+git clone https://github.com/xblahoud/ltlcross_wrapper.git -b v$V
 
 cd ~user/src
 git clone https://github.com/xblahoud/seminator-evaluation.git
