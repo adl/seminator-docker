@@ -42,7 +42,7 @@ cd ~user/src
 # We install from PyPI to get all dependencies, and also clone
 # from git so that people who want to follow the experiments can
 # look at the source code.
-V=0.7.2
+V=0.7.3
 pip3 install ltlcross_wrapper==$V
 git clone https://github.com/xblahoud/ltlcross_wrapper.git -b v$V
 
