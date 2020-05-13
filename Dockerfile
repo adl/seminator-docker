@@ -45,5 +45,10 @@ RUN umask 0002 \
     && mkdir -p .ipython/profile_default \
     && (echo 'c = get_config()'; echo "c.InteractiveShellApp.matplotlib = 'inline'") > .ipython/profile_default/ipython_kernel_config.py \
     && mkdir -p .local/share/jupyter/runtime \
-    && for dir in . notebook; do (cd $dir; for i in *.ipynb; do mv $i tmp-$i; jupyter nbconvert --to notebook tmp-$i --stdout > $i; rm -f tmp-$i; jupyter trust $i; done); done
+    && for dir in . \
+                  ./src/seminator-2.0/notebooks \
+                  ./src/seminator-evaluation \
+                  ./src/seminator-evaluation/complement \
+                  ./src/seminator-evaluation/semi-determinization; \
+         do (cd $dir; for i in *.ipynb; jupyter trust $i; done); done
 
