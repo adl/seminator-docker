@@ -148,7 +148,7 @@ Some of the tools assume that a file can only contain one automaton, while other
 
 The example are ordered so that they can depend on files produced by examples above them.
 
-1. [Spot 2.8.5](https://spot.lrde.epita.fr/) was installed in `/usr/bin` from its Debian package.  This package provides a library of ω-automata algorithms (on which Seminator is built), a [set of tools](https://spot.lrde.epita.fr/tools.html) for manipulating automata from the command-line, and Python bindings.  The following commands may be useful:
+1. [Spot 2.9](https://spot.lrde.epita.fr/) was installed in `/usr/bin` from its Debian package.  This package provides a library of ω-automata algorithms (on which Seminator is built), a [set of tools](https://spot.lrde.epita.fr/tools.html) for manipulating automata from the command-line, and Python bindings.  The following commands may be useful:
 
    - `ltl2tgba 'F(a & GFb) R c' >automaton.hoa` converts an LTL formula into an equivalent generalized-Büchi automaton
    - `ltl2tgba -B 'F(a & GFb) R c' >sba.hoa` converts an LTL formula into an equivalent state-based Büchi automaton
@@ -179,7 +179,7 @@ The example are ordered so that they can depend on files produced by examples ab
 
    - `roll complement automaton.hoa -out complement.hoa` will read `automaton.hoa` and output its complement in `complement.hoa`; this replaces the [Buechic tool](https://iscasmc.ios.ac.cn/buechic/doku.php).
 
-6. [GOAL-20200107](http://goal.im.ntu.edu.tw/) This is a pre-release of the next release of GOAL (Graphical Tool for Omega-Automata and Logics).  The docker image contains a "headerless" version of the Java runtime, enough to run GOAL from the command-line, but not to start its graphical interface.  Additionally, [the Fribourg plugin](http://goal.im.ntu.edu.tw/wiki/doku.php?id=goal:extensions#fribourg_construction)) provides a new complementation implementation.
+6. [GOAL-20200506](http://goal.im.ntu.edu.tw/) GOAL stands for Graphical Tool for Omega-Automata and Logics.  The docker image contains a "headerless" version of the Java runtime, enough to run GOAL from the command-line, but not to start its graphical interface.  Additionally, [the Fribourg plugin](http://goal.im.ntu.edu.tw/wiki/doku.php?id=goal:extensions#fribourg_construction)) provides a new complementation implementation.
 
    - `gc batch '$temp = complement -m fribourg sba.hoa; save -c HOAF $temp complement.hoa;'` will complement the state-based Büchi automaton stored in `sba.hoa` using the Fribourg construction, and will save the result in `complement.hoa`.
    - `gc batch '$temp = complement -m piterman -eq -sp sba.hoa; save -c HOAF $temp complement.hoa;'` does the same using the Piterman construction
