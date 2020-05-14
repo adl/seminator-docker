@@ -49,6 +49,6 @@ RUN umask 0002 \
                   ./src/seminator-2.0/notebooks \
                   ./src/seminator-evaluation \
                   ./src/seminator-evaluation/complement \
-                  ./src/seminator-evaluation/semi-determinization; \
-         do (cd $dir; for i in *.ipynb; jupyter trust $i; done); done
+                  ./src/seminator-evaluation/semi-determinization; do \
+                     (cd $dir; for i in *.ipynb; do jupyter trust $i; done); done
 
